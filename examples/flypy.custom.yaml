@@ -1,0 +1,20 @@
+# encoding: utf-8
+#
+# 小鹤音形：关掉 emoji 联想
+#
+# 为什么必须关：emoji_suggestion 会给四码再塞一条候选（爸爸 → 👨🏻），
+# 而 librime 只在「菜单只剩 1 条」时自动上屏（speller.cc:162-168）。
+# 实测：关掉它，需要二次选择的四码从 2,522 降到 1,480。
+
+patch:
+  switches/@next:
+    name: emoji_suggestion
+    reset: 0
+    states: [ "🈚︎", "🈶️" ]
+  'engine/filters/@before 0':
+    simplifier@emoji_suggestion
+  emoji_suggestion:
+    opencc_config: emoji.json
+    option_name: emoji_suggestion
+    tips: none
+    inherit_comment: false

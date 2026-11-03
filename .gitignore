@@ -1,0 +1,8 @@
+# 生成物 / 本机数据，不要提交
+/out/
+/out-dry-run/
+*.dict.yaml
+*.bin
+*.bak
+__pycache__/
+*.pyc
